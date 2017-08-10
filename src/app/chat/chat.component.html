@@ -1,0 +1,44 @@
+<div>
+  <div class="content" *ngIf="_authService.isAuthenticated()">
+    <div *ngIf="messageList">
+      <div *ngFor="let message of messageList">
+        <md-card class="test">
+          <md-card-content>
+            <div *ngIf="getLoggedUser() === message.author">
+              <div class="col-md-10" style="text-align: right">{{message.text}}</div>
+              <div class="col-md-2">
+                <img md-card-image mdCardImageSmall src="{{message.image}}">
+                <p style="text-align: center; padding: 10px">
+                  {{message.name}}
+                </p>
+              </div>
+            </div>
+            <div *ngIf="getLoggedUser() != message.author">
+              <div class="col-md-2">
+                <img md-card-image mdCardImageSmall src="{{message.image}}">
+                <p style="text-align: center; padding: 10px">
+                  {{message.name}}
+                </p>
+              </div>
+              <div class="col-md-10">{{message.text}}</div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+    <div class="row">
+      <form #messageForm="ngForm" (ngSubmit)="addMessage(messageForm.value)" autocomplete="off">
+        <div class="form-group">
+          <div class="col-md-12">
+            {{_authService.loggedUser.firstName + ' ' + _authService.loggedUser.lastName + ':'}}
+            <md-input-container>
+              <textarea (ngModel)="messageText" mdInput id="messageText" name="messageText" type="text"
+                        class="form-control">napisz wiadomość...</textarea>
+            </md-input-container>
+            <button type="submit" md-raised-button class="app-buttons">Wyślij</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

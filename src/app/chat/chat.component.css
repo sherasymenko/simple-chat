@@ -1,0 +1,20 @@
+.content {
+  background-color: darkgrey;
+  padding: 30px;
+  margin: 30px;
+}
+
+.app-buttons {
+  font-size: 16px;
+  margin: 20px 0;
+  padding: 3px 15px 3px 15px;
+  color: rgb(49, 46, 46);
+  background-color: rgba(224, 224, 224, 0.96);
+  text-transform: none;
+  font-weight: 400;
+  min-width: 100px;
+}
+
+md-card-content {
+  height: 80px;
+}

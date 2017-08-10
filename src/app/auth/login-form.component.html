@@ -1,0 +1,28 @@
+<h1>Logowanie</h1>
+<hr>
+<div>
+  <span *ngIf="error" class="label label-danger">Złe dane logowania</span>
+  <form #loginForm="ngForm" class="logform-elements" (ngSubmit)="verifyAndLogin(loginForm.value)" autocomplete="on">
+    <div class="form-group">
+      <md-dialog-content>
+        <td>
+          <md-input-container class="example-full-width">
+            <input (ngModel)="userName" mdInput id="userName" name="userName" type="text" class="form-control"
+                   placeholder="Login">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input (ngModel)="password" id="password" name="password" type="password" class="form-control" mdInput
+                   type="password" placeholder="Password">
+          </md-input-container>
+        </td>
+      </md-dialog-content>
+      <md-dialog-actions>
+        <button type="submit" md-raised-button class="app-buttons">OK</button>
+        <button type="button" class="app-buttons" md-raised-button (click)="dialogRef.close()">Cancel</button>
+      </md-dialog-actions>
+    </div>
+  </form>
+</div>
+

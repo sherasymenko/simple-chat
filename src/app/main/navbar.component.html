@@ -1,0 +1,33 @@
+<div class="navbar navbar-default main-menu">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <div class="navbar-header navbar-right">
+        <ul class="nav navbar-nav">
+          <div class="main-menu-elements">
+            <button *ngIf="!_authService.isAuthenticated()" md-raised-button class="app-buttons" (click)="openDialog()">
+              Zaloguj się
+            </button>
+            <div *ngIf="_authService.isAuthenticated()">
+              Jesteś zalogowany jako: {{_authService.loggedUser.firstName}} {{_authService.loggedUser.lastName}}
+              <button md-raised-button class="app-buttons" (click)="logout()">
+                Wyloguj się
+              </button>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

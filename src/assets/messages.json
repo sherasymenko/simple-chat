@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Cześć",
+    "author": "user1",
+    "name": "Jan Kowalski",
+    "image": "assets/img/boy.png"
+  },
+  {
+    "text": "Cześć :)",
+    "author": "user2",
+    "name": "Anna Kowalska",
+    "image": "assets/img/girl.png"
+  },
+  {
+    "text": "Co robisz?",
+    "author": "user2",
+    "name": "Anna Kowalska",
+    "image": "assets/img/girl.png"
+  },
+  {
+    "text": "nic ciekawego",
+    "author": "user1",
+    "name": "Jan Kowalski",
+    "image": "assets/img/boy.png"
+  },
+  {
+    "text": "A ty?",
+    "author": "user1",
+    "name": "Jan Kowalski",
+    "image": "assets/img/boy.png"
+  }
+]
