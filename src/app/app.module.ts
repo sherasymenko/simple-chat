@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {LoginService} from './auth/login.service';
 import {MainComponent} from './main/main.component';
+import {appStoreProviders} from './main/app.store';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import {MainComponent} from './main/main.component';
       {path: '', component: MainComponent}
     ])
   ],
-  providers: [LoginService],
+  providers: [LoginService, appStoreProviders],
   bootstrap: [AppComponent],
   entryComponents: [LoginFormComponent]
 })
