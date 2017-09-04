@@ -1,5 +1,5 @@
 <div>
-  <div class="content" *ngIf="_authService.isAuthenticated()">
+  <div class="content" *ngIf="authService.isAuthenticated()">
     <div *ngIf="messageList">
       <div *ngFor="let message of messageList">
         <md-card class="test">
@@ -30,7 +30,7 @@
       <form #messageForm="ngForm" (ngSubmit)="addMessage(messageForm.value)" autocomplete="off">
         <div class="form-group">
           <div class="col-md-12">
-            {{_authService.loggedUser.firstName + ' ' + _authService.loggedUser.lastName + ':'}}
+            {{authService.loggedUser.firstName + ' ' + authService.loggedUser.lastName + ':'}}
             <md-input-container>
               <textarea (ngModel)="messageText" mdInput id="messageText" name="messageText" type="text"
                         class="form-control">napisz wiadomość...</textarea>

@@ -16,7 +16,7 @@ export class ChatService {
   getMessages(): Observable<IMessage[]> {
     return this._http.get(this._personUrl)
       .map((response: Response) => <IMessage[]> response.json())
-      .do(data => console.log('All: ' + JSON.stringify(data)))
+      // .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 

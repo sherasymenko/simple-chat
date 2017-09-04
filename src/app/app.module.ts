@@ -12,7 +12,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {LoginService} from './auth/login.service';
 import {MainComponent} from './main/main.component';
-import {appStoreProviders} from './main/app.store';
+
+import {reducers} from './reducers/index';
+import {MessageEffects} from './effects/messages';
+
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -34,11 +39,15 @@ import {appStoreProviders} from './main/app.store';
     RouterModule.forRoot([
       {path: 'chat', loadChildren: './chat/chat.module#ChatModule'},
       {path: '', component: MainComponent}
-    ])
+    ]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([MessageEffects])
   ],
-  providers: [LoginService, appStoreProviders],
+  providers: [LoginService],
   bootstrap: [AppComponent],
   entryComponents: [LoginFormComponent]
 })
+
+
 export class AppModule {
 }
