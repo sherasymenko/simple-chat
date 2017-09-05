@@ -1,4 +1,4 @@
-export interface IMessage {
+export interface Message {
   text: string;
   author: string;
   image: string;

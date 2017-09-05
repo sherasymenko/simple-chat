@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {IMessage} from './message.model';
+import {Message} from './message.model';
 import {ChatService} from './chat.service';
 import {LoginService} from '../auth/login.service';
-import {AddMessageAction} from '../actions/chat-actions';
+import {AddMessageAction, DoAddMessageAction} from '../actions/chat-actions';
 import * as fromRoot from '../reducers';
 import {Store} from '@ngrx/store';
 
@@ -12,7 +12,7 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  messageList: IMessage[];
+  messageList: Message[];
   constructor(private chatService: ChatService, private authService: LoginService,
               private appStore: Store<fromRoot.State>) {
     this.appStore.select(fromRoot.getMessagesCollection).subscribe(data => {
@@ -22,13 +22,14 @@ export class ChatComponent {
   }
 
   addMessage(messageForm) {
-    const newMessage: IMessage = {
+    const newMessage: Message = {
       text: messageForm.messageText,
       author: this.getLoggedUser(),
       image: this.authService.loggedUser.gender === 'm' ? 'assets/img/boy.png' : 'assets/img/girl.png',
       name: this.authService.loggedUser.firstName + ' ' + this.authService.loggedUser.lastName
     };
-    this.appStore.dispatch(new AddMessageAction(newMessage));
+    this.appStore.dispatch(new DoAddMessageAction(newMessage));
+   // this.appStore.dispatch(new AddMessageAction(newMessage));
   }
 
   getLoggedUser() {

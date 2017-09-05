@@ -1,0 +1,18 @@
+[
+  {
+    "id": "11",
+    "author": {
+      "id": "2",
+      "name": "Adam"
+    },
+    "comment": "przykładowy komentarz11"
+  },
+  {
+    "id": "12",
+    "author": {
+      "id": "1",
+      "name": "Paul"
+    },
+    "comment": "przykładowy komentarz2"
+  }
+]

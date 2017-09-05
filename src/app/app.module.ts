@@ -18,6 +18,7 @@ import {MessageEffects} from './effects/messages';
 
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import { MainService } from './main/main.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import {EffectsModule} from '@ngrx/effects';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([MessageEffects])
   ],
-  providers: [LoginService],
+  providers: [LoginService, MainService],
   bootstrap: [AppComponent],
   entryComponents: [LoginFormComponent]
 })

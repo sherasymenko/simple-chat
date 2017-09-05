@@ -1,0 +1,42 @@
+[
+  {
+    "id": "6",
+    "author": {
+      "id": "2",
+      "name": "Adam"
+    },
+    "comment": "przykładowy komentarz10"
+  },
+  {
+    "id": "7",
+    "author": {
+      "id": "1",
+      "name": "Paul"
+    },
+    "comment": "przykładowy komentarz9"
+  },
+  {
+    "id": "8",
+    "author": {
+      "id": "1",
+      "name": "Paul"
+    },
+    "comment": "przykładowy komentarz7"
+  },
+  {
+    "id": "9",
+    "author": {
+      "id": "2",
+      "name": "Adam"
+    },
+    "comment": "przykładowy komentarz5"
+  },
+  {
+    "id": "10",
+    "author": {
+      "id": "2",
+      "name": "Adam"
+    },
+    "comment": "przykładowy komentarz8"
+  }
+]

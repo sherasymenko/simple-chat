@@ -1,5 +1,5 @@
-import {IMessage} from './message.model';
+import {Message} from './message.model';
 
 export interface Thread {
-  messages: IMessage[];
+  messages: Message[];
 }
