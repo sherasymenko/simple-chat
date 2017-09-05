@@ -6,28 +6,23 @@ import {
 import * as message from '../actions/chat-actions';
 
 export interface State {
-  messages: IMessage[];
+  chat: IMessage[];
 }
 
 export const initialState: State = {
-  messages: []
+  chat: []
 };
 
 export function reducer(state = initialState, action: message.Actions): State {
   switch (action.type) {
     case ADD_MESSAGE: {
       const message = (<AddMessageAction>action).message;
-      console.log('test123' + message.text);
+      console.log('ADD_MESSAGE ', message);
       return {
-        ...state,
-        text: message.text,
-        author: message.author,
-        image: message.image,
-        name: message.name
+        chat: [...state.chat, message]
       };
     }
     case SEARCH_MESSAGES: {
-      // const message = (<SearchMessagesAction>action).message;
       console.log('SEARCH_MESSAGES');
       return {
         ...state
@@ -37,41 +32,14 @@ export function reducer(state = initialState, action: message.Actions): State {
       const messages = action.messages;
       console.log('SEARCH_MESSAGES_COMPLETE ' + JSON.stringify(messages));
       return {
-        ...state,
-        messages
+        ...state.chat,
+        chat: messages.map(message => message)
       };
+    }
+    default: {
+      return state;
     }
   }
 }
 
-export const getEntities = (state: State) => state.messages;
-
-/*export const ChatReducer =
-  function (state: IMessage = initialState, action: Action): IMessage {
-    switch (action.type) {
-      case ADD_MESSAGE: {
-        const message = (<AddMessageAction>action).message;
-        console.log('test123' + message.text);
-        return {
-          ...state,
-          text: message.text,
-          author: message.author,
-          image: message.image,
-          name: message.name
-        };
-      }
-      default:
-        return state;
-    }
-  };*/
-
-/*
-export const getThreadsState = (state): ThreadsState => state.threads;
-
-export const getThreadsEntities = createSelector(
-  getThreadsState,
-  ( state: ThreadsState ) => state.entities );
-
-export const getCurrentThread = createSelector(
-);
-*/
+export const getEntities = (state: State) => state.chat;

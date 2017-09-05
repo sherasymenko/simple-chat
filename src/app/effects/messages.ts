@@ -18,11 +18,8 @@ export class MessageEffects {
   @Effect()
   search$: Observable<Action> = this.actions$
     .ofType(chat.SEARCH_MESSAGES)
-    .debounceTime(300)
-    .map(toPayload)
     .switchMap(() => {
       const nextSearch$ = this.actions$.ofType(chat.SEARCH_MESSAGES).skip(1);
-      // chatService.getMessages().subscribe(data => this.messageList = data);
       console.log('in effect');
       return this.chatService.getMessages()
         .takeUntil(nextSearch$)
