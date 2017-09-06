@@ -29,6 +29,7 @@
     "@ngrx/store": "^4.0.3",
     "core-js": "^2.5.1",
     "hammerjs": "^2.0.8",
+    "lodash": "^4.17.4",
     "ngrx": "^2.0.1",
     "ngrx-store-freeze": "^0.1.9",
     "normalizr": "^3.2.3",

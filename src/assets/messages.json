@@ -1,32 +1,52 @@
 [
   {
+    "id": 1,
     "text": "Cześć",
-    "author": "user1",
-    "name": "Jan Kowalski",
+    "author": {
+      "id": "1",
+      "username": "user1",
+      "name": "Jan Kowalski"
+    },
     "image": "assets/img/boy.png"
   },
   {
+    "id": 2,
     "text": "Cześć :)",
-    "author": "user2",
-    "name": "Anna Kowalska",
+    "author": {
+      "id": "2",
+      "username": "user2",
+      "name": "Anna Kowalska"
+    },
     "image": "assets/img/girl.png"
   },
   {
+    "id": 3,
     "text": "Co robisz?",
-    "author": "user2",
-    "name": "Anna Kowalska",
+    "author": {
+      "id": "2",
+      "username": "user2",
+      "name": "Anna Kowalska"
+    },
     "image": "assets/img/girl.png"
   },
   {
+    "id": 4,
     "text": "nic ciekawego",
-    "author": "user1",
-    "name": "Jan Kowalski",
+    "author": {
+      "id": "1",
+      "username": "user1",
+      "name": "Jan Kowalski"
+    },
     "image": "assets/img/boy.png"
   },
   {
+    "id": 5,
     "text": "A ty?",
-    "author": "user1",
-    "name": "Jan Kowalski",
+    "author": {
+      "id": "1",
+      "username": "user1",
+      "name": "Jan Kowalski"
+    },
     "image": "assets/img/boy.png"
   }
 ]

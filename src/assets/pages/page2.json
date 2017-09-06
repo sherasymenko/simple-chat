@@ -1,42 +1,36 @@
 [
   {
-    "id": "6",
-    "author": {
-      "id": "2",
-      "name": "Adam"
-    },
-    "comment": "przykładowy komentarz10"
-  },
-  {
-    "id": "7",
+    "id": "125",
     "author": {
       "id": "1",
       "name": "Paul"
     },
-    "comment": "przykładowy komentarz9"
+    "title": "My awesome blog post",
+    "comments": [
+      {
+        "id": "327",
+        "commenter": {
+          "id": "2",
+          "name": "Nicole"
+        }
+      }
+    ]
   },
   {
-    "id": "8",
+    "id": "126",
     "author": {
-      "id": "1",
+      "id": "3",
       "name": "Paul"
     },
-    "comment": "przykładowy komentarz7"
-  },
-  {
-    "id": "9",
-    "author": {
-      "id": "2",
-      "name": "Adam"
-    },
-    "comment": "przykładowy komentarz5"
-  },
-  {
-    "id": "10",
-    "author": {
-      "id": "2",
-      "name": "Adam"
-    },
-    "comment": "przykładowy komentarz8"
+    "title": "My awesome blog post",
+    "comments": [
+      {
+        "id": "326",
+        "commenter": {
+          "id": "4",
+          "name": "Tom"
+        }
+      }
+    ]
   }
 ]

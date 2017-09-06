@@ -1,42 +1,36 @@
 [
   {
-    "id": "1",
+    "id": "123",
     "author": {
       "id": "1",
       "name": "Paul"
     },
-    "comment": "przykładowy komentarz1"
+    "title": "My awesome blog post",
+    "comments": [
+      {
+        "id": "324",
+        "commenter": {
+          "id": "3",
+          "name": "Nicole"
+        }
+      }
+    ]
   },
   {
-    "id": "2",
+    "id": "124",
     "author": {
       "id": "3",
-      "name": "Anna"
-    },
-    "comment": "przykładowy komentarz4"
-  },
-  {
-    "id": "3",
-    "author": {
-      "id": "1",
       "name": "Paul"
     },
-    "comment": "przykładowy komentarz2"
-  },
-  {
-    "id": "4",
-    "author": {
-      "id": "2",
-      "name": "Adam"
-    },
-    "comment": "przykładowy komentarz6"
-  },
-  {
-    "id": "5",
-    "author": {
-      "id": "1",
-      "name": "Paul"
-    },
-    "comment": "przykładowy komentarz3"
+    "title": "My awesome blog post",
+    "comments": [
+      {
+        "id": "325",
+        "commenter": {
+          "id": "1",
+          "name": "Paul"
+        }
+      }
+    ]
   }
 ]

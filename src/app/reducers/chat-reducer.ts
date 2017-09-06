@@ -3,7 +3,7 @@ import {
   ADD_MESSAGE, SEARCH_MESSAGES, AddMessageAction, SearchMessagesAction,
   SEARCH_MESSAGES_COMPLETE, ADD_MESSAGE_SUCCESS, ADD_MESSAGE_FAIL
 } from '../actions/chat-actions';
-import * as message from '../actions/chat-actions';
+import * as chat from '../actions/chat-actions';
 
 export interface State {
   chat: Message[];
@@ -13,7 +13,7 @@ export const initialState: State = {
   chat: []
 };
 
-export function reducer(state = initialState, action: message.Actions): State {
+export function reducer(state = initialState, action: chat.Actions): State {
   switch (action.type) {
     case ADD_MESSAGE: {
       const message = (<AddMessageAction>action).message;
