@@ -41,3 +41,27 @@ export class ChatService {
     return Observable.throw(error.json().error || 'Server error');
   }
 }
+
+/*pobierzListeMoichWnioskow(podmiotId: number, params?: any): Observable<any> {
+  params = params || {};
+
+const path = `/sio3/api/podmioty/${podmiotId}/auth/wnioski/moje?`;
+const pageSize = _.get(params, 'paginator.pageSize');
+const queryParams = QueryParamsUtil.toParamsString({
+  pageSize: pageSize || '',
+});
+
+return this.authHttp.get(path + queryParams)
+  .map(res => {
+    return res.json();
+  })
+  .map(res => {
+    const normalized: any = normalize(res.items, [wniosekSchema]);
+    return {
+      entities: normalized.entities,
+      result: normalized.result,
+      paginator: res.paginator
+    };
+  });
+}*/
+

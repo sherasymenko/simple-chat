@@ -1,6 +1,7 @@
 import * as fromChat from './chat-reducer';
 import * as fromEntities from './entities-reducer';
 import { createSelector } from 'reselect';
+import { Message } from '../chat/message.model';
 
 export interface State {
   chat: fromChat.State;
@@ -29,8 +30,8 @@ export const getEntitiesState = (state: State) => state.entities;
 export const getEntitiesCollection = createSelector(getEntitiesState, getResultState, (entities, results) => {
   console.log('getEntitiesCollection results ', results);
   console.log('getEntitiesCollection entities ', entities);
- /* let r  = [];
-  r = results.map(d => {
+  let r  = [];
+  /*r = results.map(d => {
     const article = entities['articles'][d];
     if (article) {
       return article;
@@ -38,7 +39,7 @@ export const getEntitiesCollection = createSelector(getEntitiesState, getResultS
     return null;
   });
   return r;*/
- return entities;
+ return entities as Message[];
 });
 
 /*export const getWniosekLista = createSelector(
@@ -62,3 +63,4 @@ export const getEntitiesCollection = createSelector(getEntitiesState, getResultS
     }
     return result;
   });*/
+

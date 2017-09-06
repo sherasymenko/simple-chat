@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { normalize, schema, Schema } from 'normalizr';
 import * as main from '../actions/main-actions';
+
 const user = new schema.Entity('users');
 const comment = new schema.Entity('comments', {
   commenter: user
@@ -29,17 +30,18 @@ export class ChatComponent {
   constructor(private chatService: ChatService, private authService: LoginService,
               private appStore: Store<fromRoot.State>) {
     this.appStore.select(fromRoot.getMessagesCollection).subscribe(data => {
-      console.log('from chat component 1', data);
-      this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
+
       this.messageList = data;
       this.appStore.select(fromRoot.getEntitiesCollection).subscribe(d => {
         console.log('from chat component 2', d);
-        d['articles'].map(c => {
-          console.log('comment', c);
-        });
+        if (d) {
+          d['articles'].map(c => {
+            console.log('comment', c);
+          });
+        }
       });
     });
-
+    this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
 
     /* this.appStore.select(fromRoot.getEntitiesCollection).map(d => {
       console.log('test5', d);
@@ -57,26 +59,25 @@ export class ChatComponent {
       this.showData$ = this.appStore.select(fromRoot.getEntitiesCollection);
     });*/
 
+    /*
+        this.mainService.getPageData(pageNr).subscribe(data => {
+          this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
+          /!*console.log('Page data before: ', data);
+          // console.log('Page data after: ', new schema.Array({article}));
+          console.log('Page data after: ', normalize(data, new schema.Array(article)));*!/
 
-/*
-    this.mainService.getPageData(pageNr).subscribe(data => {
-      this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
-      /!*console.log('Page data before: ', data);
-      // console.log('Page data after: ', new schema.Array({article}));
-      console.log('Page data after: ', normalize(data, new schema.Array(article)));*!/
-
-      this.showData$ = this.appStore.select(fromRoot.getEntitiesCollection);
-    });*/
+          this.showData$ = this.appStore.select(fromRoot.getEntitiesCollection);
+        });*/
   }
 
   addMessage(messageForm) {
-  /*  const newMessage: Message = {
-      text: messageForm.messageText,
-      author: this.getLoggedUser(),
-      image: this.authService.loggedUser.gender === 'm' ? 'assets/img/boy.png' : 'assets/img/girl.png',
-      name: this.authService.loggedUser.firstName + ' ' + this.authService.loggedUser.lastName
-    };
-    this.appStore.dispatch(new DoAddMessageAction(newMessage));*/
+    /*  const newMessage: Message = {
+        text: messageForm.messageText,
+        author: this.getLoggedUser(),
+        image: this.authService.loggedUser.gender === 'm' ? 'assets/img/boy.png' : 'assets/img/girl.png',
+        name: this.authService.loggedUser.firstName + ' ' + this.authService.loggedUser.lastName
+      };
+      this.appStore.dispatch(new DoAddMessageAction(newMessage));*/
     // this.appStore.dispatch(new AddMessageAction(newMessage));
   }
 
