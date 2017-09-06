@@ -9,7 +9,17 @@ import { Message } from './message.model';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import { AddMessageAction } from '../actions/chat-actions';
+import { normalize, schema } from 'normalizr';
 
+
+const user = new schema.Entity('users');
+const comment = new schema.Entity('comments', {
+  commenter: user
+});
+const article = new schema.Entity('articles', {
+  author: user,
+  comments: [comment]
+});
 
 @Injectable()
 export class ChatService {
@@ -18,11 +28,22 @@ export class ChatService {
   constructor(private _http: Http, private appStore: Store<fromRoot.State>) {
   }
 
-  getMessages(): Observable<Message[]> {
+  getMessages(): Observable<any> {
     return this._http.get(this._personUrl)
-      .map((response: Response) => <Message[]> response.json())
+      .map(res => {
+        return res.json();
+      })
+      .map(res => {
+        const normalized: any = normalize(res.items, [wniosekSchema]);
+        return {
+          entities: normalized.entities,
+          result: normalized.result,
+          paginator: res.paginator
+        };
+      });
+      // .map((response: Response) => <Message[]> response.json())
       // .do(data => console.log('All: ' + JSON.stringify(data)))
-      .catch(this.handleError);
+      // .catch(this.handleError); catch-e - robić w efektach a nie w serwisach
   }
 
   addMessage(newMessage): Observable<any> {

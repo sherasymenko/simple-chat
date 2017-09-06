@@ -41,7 +41,7 @@ export class ChatComponent {
         }
       });
     });
-    this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
+    // this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
 
     /* this.appStore.select(fromRoot.getEntitiesCollection).map(d => {
       console.log('test5', d);
