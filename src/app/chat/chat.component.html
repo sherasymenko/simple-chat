@@ -1,23 +1,23 @@
 <div>
   <div class="content" *ngIf="authService.isAuthenticated()">
-    <div *ngIf="messageList">
-      <div *ngFor="let message of messageList">
+    <div *ngIf="messages$ | async">
+      <div *ngFor="let message of messages$ | async">
         <md-card class="test">
           <md-card-content>
-            <div *ngIf="getLoggedUser() === message.author">
+            <div *ngIf="getLoggedUser().id == message.author">
               <div class="col-md-10" style="text-align: right">{{message.text}}</div>
               <div class="col-md-2">
                 <img md-card-image mdCardImageSmall src="{{message.image}}">
                 <p style="text-align: center; padding: 10px">
-                  {{message.name}}
+                  {{message.author}}
                 </p>
               </div>
             </div>
-            <div *ngIf="getLoggedUser() != message.author">
+            <div *ngIf="getLoggedUser().id != message.author">
               <div class="col-md-2">
                 <img md-card-image mdCardImageSmall src="{{message.image}}">
                 <p style="text-align: center; padding: 10px">
-                  {{message.name}}
+                  {{message.author}}
                 </p>
               </div>
               <div class="col-md-10">{{message.text}}</div>

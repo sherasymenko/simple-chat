@@ -7,10 +7,9 @@ export interface State {
   };
 }
 
-export function reducer(state = {}, action: Action): State {
-  if (action && action.payload && action.payload.entities) {
-    console.log('TEST1');
-    return assign({}, {...state}, {...action.payload.entities});
+export function reducer(state = {}, action: Action, entityType: string) {
+  if (action && action.payload && action.payload.entities && action.payload.entities[entityType]) {
+    return assign({}, {...state}, {...action.payload.entities[entityType]});
   } else {
     return state;
   }

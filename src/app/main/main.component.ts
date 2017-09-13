@@ -29,6 +29,11 @@ export class MainComponent {
   showData$: Observable<any>;
 
   constructor(private router: Router, private appStore: Store<fromRoot.State>, private mainService: MainService) {
+
+    let test = null;
+    console.log('1. ', test > 0); // false
+    console.log('2. ', test == 0); // false
+    console.log('3. ', test <= 0); // true
   }
 
   navigateToChat() {
@@ -40,45 +45,5 @@ export class MainComponent {
     this.appStore.dispatch(new chat.SearchMessagesAction());
   }
 
-  loadPage(pageNr) {
-
-    /* this.appStore.select(fromRoot.getEntitiesCollection).map(d => {
-       console.log('test5', d);
-       return d;
-     }).subscribe(d => {
-       console.log('from component ', d);
-     });*/
-
-    /*this.mainService.getPageData(pageNr).subscribe(data => {
-      this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
-      /!*console.log('Page data before: ', data);
-      // console.log('Page data after: ', new schema.Array({article}));
-      console.log('Page data after: ', normalize(data, new schema.Array(article)));*!/
-
-      this.showData$ = this.appStore.select(fromRoot.getEntitiesCollection);
-    });*/
-  }
 }
-
-/*export const getWniosekLista = createSelector(
-  getWniosekListaIdsData,
-  getEntitiesWnioski,
-  getEntitiesUzytkownicy,
-  getSlownikiState,
-  (ids, wnioski, uzytkownicy, slowniki) => {
-    let result = [];
-    if (ids && ids.length) {
-      result = ids.map(id => {
-        const wniosek = wnioski[id];
-        if (wniosek) {
-          const uzytkownikId = _.get(wniosek, 'uzytkownik') as number;
-          return _.merge({}, wniosek, {
-            uzytkownik: UserUtil.getUserById(uzytkownikId, uzytkownicy, slowniki[SlownikiTypes.S172])
-          }) as any;
-        }
-        return null;
-      }) as WniosekType[];
-    }
-    return result;
-  });*/
 

@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { Message } from './message.model';
 import { ChatService } from './chat.service';
 import { LoginService } from '../auth/login.service';
-import { AddMessageAction, DoAddMessageAction } from '../actions/chat-actions';
 import * as fromRoot from '../reducers';
 import { Store } from '@ngrx/store';
+import { schema } from 'normalizr';
+import map from 'lodash/map';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/first';
+import * as _ from 'lodash';
+import { AddCommentAction } from '../actions/main-actions';
 import { Observable } from 'rxjs/Observable';
-import { normalize, schema, Schema } from 'normalizr';
-import * as main from '../actions/main-actions';
-
 const user = new schema.Entity('users');
 const comment = new schema.Entity('comments', {
   commenter: user
@@ -26,62 +29,32 @@ const article = new schema.Entity('articles', {
 export class ChatComponent {
 
   messageList: Message[];
-
+messages$: Observable<Message[]>;
   constructor(private chatService: ChatService, private authService: LoginService,
               private appStore: Store<fromRoot.State>) {
-    this.appStore.select(fromRoot.getMessagesCollection).subscribe(data => {
-
-      this.messageList = data;
-      this.appStore.select(fromRoot.getEntitiesCollection).subscribe(d => {
-        console.log('from chat component 2', d);
-        if (d) {
-          d['articles'].map(c => {
-            console.log('comment', c);
-          });
-        }
-      });
-    });
-    // this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
-
-    /* this.appStore.select(fromRoot.getEntitiesCollection).map(d => {
-      console.log('test5', d);
-      return d;
-    }).subscribe(d => {
-      console.log('from component ', d);
-    });*/
-
-    /*this.mainService.getPageData(pageNr).subscribe(data => {
-      this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
-      /!*console.log('Page data before: ', data);
-      // console.log('Page data after: ', new schema.Array({article}));
-      console.log('Page data after: ', normalize(data, new schema.Array(article)));*!/
-
-      this.showData$ = this.appStore.select(fromRoot.getEntitiesCollection);
-    });*/
-
-    /*
-        this.mainService.getPageData(pageNr).subscribe(data => {
-          this.appStore.dispatch(new main.AddCommentAction(normalize(data, new schema.Array(article))));
-          /!*console.log('Page data before: ', data);
-          // console.log('Page data after: ', new schema.Array({article}));
-          console.log('Page data after: ', normalize(data, new schema.Array(article)));*!/
-
-          this.showData$ = this.appStore.select(fromRoot.getEntitiesCollection);
-        });*/
+    // this.messages$ = this.appStore.select(fromRoot.getEntitiesCollection);
+    // .subscribe(data => {
+    //   this.messageList = map(data['articles'], (_article) => _article);
+    // });
   }
 
   addMessage(messageForm) {
-    /*  const newMessage: Message = {
-        text: messageForm.messageText,
-        author: this.getLoggedUser(),
-        image: this.authService.loggedUser.gender === 'm' ? 'assets/img/boy.png' : 'assets/img/girl.png',
-        name: this.authService.loggedUser.firstName + ' ' + this.authService.loggedUser.lastName
-      };
-      this.appStore.dispatch(new DoAddMessageAction(newMessage));*/
-    // this.appStore.dispatch(new AddMessageAction(newMessage));
+    this.messages$
+      .first()
+      .subscribe((messageList) => {
+        const nextId = _.maxBy(messageList, 'id').id + 1;
+        const newMessage: Message = {
+          id: nextId,
+          text: messageForm.messageText,
+          author: this.getLoggedUser().id,
+          image: this.authService.loggedUser.gender === 'm' ? 'assets/img/boy.png' : 'assets/img/girl.png'
+        };
+        this.appStore.dispatch(new AddCommentAction(newMessage));
+      });
+
   }
 
   getLoggedUser() {
-    return this.authService.loggedUser.userName;
+    return this.authService.loggedUser;
   }
 }

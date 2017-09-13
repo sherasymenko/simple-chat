@@ -12,6 +12,8 @@ import {of} from 'rxjs/observable/of';
 import * as chat from '../actions/chat-actions';
 import {ChatService} from '../chat/chat.service';
 import {empty} from 'rxjs/observable/empty';
+import * as main from '../actions/main-actions';
+import { AddCommentAction } from '../actions/main-actions';
 
 @Injectable()
 export class MessageEffects {
@@ -23,17 +25,19 @@ export class MessageEffects {
     .ofType(chat.SEARCH_MESSAGES)
     .switchMap(() => {
       return this.chatService.getMessages()
-        .map(messsages => new chat.SearchCompleteAction(messsages))
-        .catch(() => of(new chat.SearchCompleteAction([])));
+        .map(messages => {
+          return new main.SearchCommentsAction(messages);
+        })
+        .catch(() => of(new main.SearchCommentsAction([])));
     });
 
   @Effect()
   add$: Observable<Action> = this.actions$
-    .ofType(chat.DO_ADD_MESSAGE)
+    .ofType(main.ADD_COMMENT)
+    .map((m: AddCommentAction) => m.payload)
     .switchMap(message => {
-      console.log('TEST9', message);
       return this.chatService.addMessage(message)
-        .map(m => new chat.AddMessageSuccess())
+        .map(scopeMessage => new main.AddCommentSuccess(scopeMessage))
         .catch((err) => of(new chat.AddMessageFail()));
     });
 }
